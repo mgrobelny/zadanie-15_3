@@ -7,11 +7,13 @@ class Stopwatch {
     }
 
     reset() {
-        this.times = {
-            minutes: 0,
-            seconds: 0,
-            miliseconds: 0
-        };
+    	clearInterval(this.watch);
+    	this.running = false;
+    	this.times = {
+    		minutes: 0,
+    		seconds: 0,
+    		miliseconds: 0
+    	};
     }
 
     print() {
@@ -26,7 +28,10 @@ class Stopwatch {
     if (!this.running) {
         this.running = true;
         this.watch = setInterval(() => this.step(), 10);
-    	}
+    	} else {
+    		this.running = true;
+        	this.watch = setInterval(() => this.step(), 10);
+    	};
 	}
 
 	step() {
