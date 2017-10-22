@@ -7,14 +7,18 @@ class Stopwatch {
     }
 
     reset() {
-    	clearInterval(this.watch);
-    	this.running = false;
     	this.times = {
     		minutes: 0,
     		seconds: 0,
     		miliseconds: 0
     	};
     }
+
+    setZero() {
+    	this.stop();
+        this.reset();
+        this.print();
+	}
 
     print() {
         this.display.innerText = this.format(this.times);
@@ -67,7 +71,7 @@ startButton.addEventListener('click', () => stopwatch.start());
 var stopButton = document.getElementById('stop');
 stopButton.addEventListener('click', () => stopwatch.stop());
 var resetButton = document.getElementById('reset');
-resetButton.addEventListener('click', () => stopwatch.reset());
+resetButton.addEventListener('click', () => stopwatch.setZero());
 
 function pad0(value) {
     	let result = value.toString();
